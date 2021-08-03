@@ -71,7 +71,7 @@ export class Locators {
     id(id: string): Locator {
         return new Locator(
             `by id #${ id }`,
-            browser => browser.$(`#${id}`),
+            browser => browser.$(`#${id}`) as unknown as Promise<Element<'async'>>,
             browser => browser.$$(`#${id}`),
         )
     }
@@ -106,7 +106,7 @@ export class Locators {
     css(selector: Selector): Locator {
         return new Locator(
             `by css ${ selector }`,
-            browser => browser.$(selector),
+            browser => browser.$(selector) as unknown as Promise<Element<'async'>>,
             browser => browser.$$(selector),
         )
     }
@@ -141,7 +141,7 @@ export class Locators {
     tagName(tagName: string): Locator {
         return new Locator(
             `by tag name <${ tagName } />`,
-            browser => browser.$(`<${ tagName } />`),
+            browser => browser.$(`<${ tagName } />`) as unknown as Promise<Element<'async'>>,
             browser => browser.$$(`<${ tagName } />`),
         )
     }
@@ -173,7 +173,7 @@ export class Locators {
     linkText(linkText: string): Locator {
         return new Locator(
             `by link text ${ linkText }`,
-            browser => browser.$(`=${ linkText }`),
+            browser => browser.$(`=${ linkText }`) as unknown as Promise<Element<'async'>>,
             browser => browser.$$(`=${ linkText }`),
         )
     }
@@ -206,7 +206,7 @@ export class Locators {
     partialLinkText(partialLinkText: string): Locator {
         return new Locator(
             `by partial link text ${ partialLinkText }`,
-            browser => browser.$(`*=${ partialLinkText }`),
+            browser => browser.$(`*=${ partialLinkText }`) as unknown as Promise<Element<'async'>>,
             browser => browser.$$(`*=${ partialLinkText }`),
         )
     }
@@ -245,7 +245,7 @@ export class Locators {
     xpath(xpath: string): Locator {
         return new Locator(
             `by xpath ${ xpath }`,
-            browser => browser.$(xpath),
+            browser => browser.$(xpath) as unknown as Promise<Element<'async'>>,
             browser => browser.$$(xpath),
         )
     }
