@@ -149,8 +149,8 @@ To learn more, check out the [example projects](https://github.com/serenity-js/s
 The easiest way for you to start writing web-based acceptance tests using Serenity/JS, WebdriverIO and either [Mocha](https://mochajs.org/), [Cucumber](https://github.com/cucumber/cucumber-js) or [Jasmine](https://jasmine.github.io/) is by using one of the below template repositories:
 
 - [Serenity/JS, Mocha, and WebdriverIO template](https://github.com/serenity-js/serenity-js-mocha-webdriverio-template)
-- [Serenity/JS, Cucumber, and Protractor template](https://github.com/serenity-js/serenity-js-cucumber-webdriverio-template)
-- [Serenity/JS, Jasmine, and Protractor template](https://github.com/serenity-js/serenity-js-jasmine-webdriverio-template)
+- Serenity/JS, Cucumber, and WebdriverIO template (coming soon!)
+- Serenity/JS, Jasmine, and WebdriverIO template (coming soon!)
 
 ## More coming soon!
 
