@@ -3,6 +3,7 @@ import { ConsoleReporter } from '@serenity-js/console-reporter';
 import { SerenityBDDReporter } from '@serenity-js/serenity-bdd';
 import { ArtifactArchiver } from '@serenity-js/core';
 import { Actors } from './src';
+import { Photographer, TakePhotosOfInteractions } from '@serenity-js/webdriverio';
 
 export const config = {
 
@@ -14,6 +15,7 @@ export const config = {
         actors: new Actors(),
         crew: [
             ArtifactArchiver.storingArtifactsAt('./target/site/serenity'),
+            Photographer.whoWill(TakePhotosOfInteractions),
             ConsoleReporter.forDarkTerminals(),
             new SerenityBDDReporter(),
         ]

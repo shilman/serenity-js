@@ -10,9 +10,9 @@ import { PhotoTakingStrategy } from './PhotoTakingStrategy';
  *  by the {@link @serenity-js/core/lib/screenplay/actor~Actor} in the spotlight results in an error.
  *
  *  This strategy works best when you are interested in the screenshots only when
- *  the a fails.
+ *  a scenario fails.
  *
- * @implements {PhotoTakingStrategy}
+ * @extends {PhotoTakingStrategy}
  */
 export class TakePhotosOfFailures extends PhotoTakingStrategy {
     protected shouldTakeAPhotoOf(event: DomainEvent): boolean {

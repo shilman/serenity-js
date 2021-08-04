@@ -7,18 +7,18 @@ import { PhotoTakingStrategy } from './strategies';
 /**
  * @desc
  *  The Photographer is a {@link @serenity-js/core/lib/stage~StageCrewMember} who takes screenshots
- *  of the web browser the {@link @serenity-js/core/lib/screenplay/actor~Actor} in the spotlight is using.
+ *  of the web browser that the {@link @serenity-js/core/lib/screenplay/actor~Actor} in the spotlight is using.
  *
  * @example <caption>Assigning the Photographer to the Stage</caption>
+ * // wdio.conf.ts
+ * import { ArtifactArchiver } from '@serenity-js/core';
+ * import { Photographer, TakePhotosOfFailures } from '@serenity-js/webdriverio';
  *
- * const { ArtifactArchiver } = require('@serenity-js/core');
- * const { Photographer, TakePhotosOfFailures } = require('@serenity-js/protractor');
- *
- * exports.config = {
+ * export const config = {
  *
  *     serenity: {
  *         crew: [
- *             ArtifactArchiver.storingArtifactsAt('./target/site/serenity'),
+ *             ArtifactArchiver.storingArtifactsAt(process.cwd(), 'target/site/serenity'),
  *             Photographer.whoWill(TakePhotosOfFailures),
  *         ]
  *     },
@@ -28,19 +28,19 @@ import { PhotoTakingStrategy } from './strategies';
  *
  * @example <caption>Taking photos upon failures only</caption>
  *
- * const { Photographer, TakePhotosOfFailures } = require('@serenity-js/protractor');
+ * import { Photographer, TakePhotosOfFailures } from '@serenity-js/webdriverio';
  *
  * Photographer.whoWill(TakePhotosOfFailures)
  *
  * @example <caption>Taking photos of all the interactions</caption>
  *
- * const { Photographer, TakePhotosOfInteractions } = require('@serenity-js/protractor');
+ * import { Photographer, TakePhotosOfInteractions } from '@serenity-js/webdriverio';
  *
  * Photographer.whoWill(TakePhotosOfInteractions)
  *
  * @example <caption>Taking photos before and after all the interactions</caption>
  *
- * const { Photographer, TakePhotosBeforeAndAfterInteractions } = require('@serenity-js/protractor');
+ * import { Photographer, TakePhotosBeforeAndAfterInteractions } from '@serenity-js/webdriverio';
  *
  * Photographer.whoWill(TakePhotosBeforeAndAfterInteractions)
  *

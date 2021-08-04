@@ -63,6 +63,7 @@ npm install --save-dev @serenity-js/mocha
 import { ArtifactArchiver } from '@serenity-js/core';
 import { ConsoleReporter } from '@serenity-js/console-reporter';
 import { SerenityBDDReporter } from '@serenity-js/serenity-bdd';
+import { Photographer, TakePhotosOfFailures } from '@serenity-js/webdriverio';
 
 export const config = {
     // Tell WebdriverIO to use Serenity/JS framework
@@ -76,7 +77,10 @@ export const config = {
 
         // Register StageCrewMembers we've imported at the top of this file    
         crew: [
+            ArtifactArchiver.storingArtifactsAt(process.cwd(), 'target/site/serenity'),
             ConsoleReporter.forDarkTerminals(),
+            new SerenityBDDReporter(),
+            Photographer.whoWill(TakePhotosOfFailures),
         ]
     },
 

@@ -9,7 +9,7 @@ import {
     DomainEvent,
 } from '@serenity-js/core/lib/events';
 import { CorrelationId, Description, Name, Photo } from '@serenity-js/core/lib/model';
-import { error as webdriver } from 'selenium-webdriver';
+import { Capabilities } from '@wdio/types';
 
 import { BrowseTheWeb } from '../../../../screenplay';
 
@@ -30,7 +30,7 @@ export abstract class PhotoTakingStrategy {
      *
      * @param {@serenity-js/core/lib/events~ActivityStarts | @serenity-js/core/lib/events~ActivityFinished} event
      * @param {@serenity-js/core/lib/stage~Stage} stage - the Stage that holds reference to the Actor in the spotlight
-     * @returns void
+     * @returns {void}
      *
      * @see {@link @serenity-js/core/lib/stage~Stage#theActorInTheSpotlight}
      */
@@ -46,20 +46,19 @@ export abstract class PhotoTakingStrategy {
 
             const
                 id              = CorrelationId.create(),
-                nameSuffix      = this.photoNameFor(event);
+                nameSuffix      = this.photoNameFor(event),
+                // todo: test if this type def is really DesiredCapabilities when multi-capabilities are used
+                capabilities    = browseTheWeb.browser.capabilities as Capabilities.DesiredCapabilities;
 
             stage.announce(new AsyncOperationAttempted(
                 new Description(`[Photographer:${ this.constructor.name }] Taking screenshot of '${ nameSuffix }'...`),
                 id,
             ));
 
-            Promise.all([
-                browseTheWeb.takeScreenshot(),
-                browseTheWeb.getCapabilities(),
-            ]).then(([ screenshot, capabilities ]) => {
+            browseTheWeb.takeScreenshot().then(screenshot => {
 
                 const
-                    context   = [ capabilities.get('platform'), capabilities.get('browserName'), capabilities.get('version') ],
+                    context   = [ capabilities.platformName, capabilities.browserName, capabilities.browserVersion ],
                     photoName = this.combinedNameFrom(...context, nameSuffix);
 
                 stage.announce(new ActivityRelatedArtifactGenerated(
@@ -96,7 +95,9 @@ export abstract class PhotoTakingStrategy {
     }
 
     private shouldIgnore(error: Error) {
-        return error instanceof webdriver.NoSuchSessionError
-            || error instanceof webdriver.UnexpectedAlertOpenError
+        // todo
+        // return error instanceof webdriver.NoSuchSessionError
+        //     || error instanceof webdriver.UnexpectedAlertOpenError
+        return false;
     }
 }

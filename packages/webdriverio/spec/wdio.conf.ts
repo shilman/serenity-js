@@ -25,6 +25,7 @@ export const config = {
     specs: [
         './spec/expectations/**/*.spec.ts',
         './spec/screenplay/**/*.spec.ts',
+        './spec/stage/**/*.spec.ts',
     ],
 
     reporters: [

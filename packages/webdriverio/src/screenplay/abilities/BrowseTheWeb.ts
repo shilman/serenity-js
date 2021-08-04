@@ -10,6 +10,7 @@ import { Key } from '../../input';
  *
  *  *Please note*: this class is still marked as experimental while new WebdriverIO Interactions and Questions are being developed.
  *  This means that its interface can change without affecting the major version of Serenity/JS itself.
+ *  In particular, please don't rely on the `browser` field to remain `public` in future releases.
  *
  * @experimental
  *
@@ -83,6 +84,17 @@ export class BrowseTheWeb implements Ability {
         return this.browser.url(destination) as any;  // todo: check if this returns a string or is mistyped
     }
 
+    /**
+     * @desc
+     *  Send a sequence of {@link Key} strokes to the active element.
+     *
+     * @param {Array<Key | string>} keys
+     *  Keys to enter
+     *
+     * @returns {Promise<void>}
+     *
+     * @see https://webdriver.io/docs/api/browser/keys/
+     */
     sendKeys(keys: Array<Key | string>): Promise<void> {
         const keySequence = keys.map(key => {
             if (! Key.isKey(key)) {
@@ -97,6 +109,17 @@ export class BrowseTheWeb implements Ability {
         });
 
         return this.browser.keys(keySequence);
+    }
+
+    /**
+     * @desc
+     *  Take a screenshot of the top-level browsing context's viewport.
+     *
+     * @return {Promise<string>}
+     *  A promise that will resolve to a base64-encoded screenshot PNG
+     */
+    takeScreenshot(): Promise<string> {
+        return this.browser.takeScreenshot();
     }
 
     /**
